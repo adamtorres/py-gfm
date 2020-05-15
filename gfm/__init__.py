@@ -7,6 +7,7 @@
 :mod:`gfm` -- Base module for GitHub-Flavored Markdown
 ======================================================
 """
+import sys
 
 from gfm import autolink
 from gfm import automail
@@ -29,7 +30,8 @@ __all__ = ['AutolinkExtension', 'AutomailExtension', 'HiddenHiliteExtension',
            'StrikethroughExtension', 'TaskListExtension']
 
 from markdown.extensions.nl2br import Nl2BrExtension
-from mdx_partial_gfm import PartialGithubFlavoredMarkdownExtension
+if 'mdx_partial_gfm' not in sys.modules:
+    from mdx_partial_gfm import PartialGithubFlavoredMarkdownExtension
 
 
 def makeExtension(*args, **kwargs):
